@@ -27,7 +27,10 @@ class ImageClassifier:
             blob.MergeFromString(infile.read())
             if blob.HasField('shape'):
                 blob_dims = blob.shape
-                assert len(blob_dims) == 4, 'Shape should have 4 dimensions - shape is %s' % blob.shape
+                assert (
+                    len(blob_dims) == 4
+                ), f'Shape should have 4 dimensions - shape is {blob.shape}'
+
             elif blob.HasField('num') and blob.HasField('channels') and \
                     blob.HasField('height') and blob.HasField('width'):
                 blob_dims = (blob.num, blob.channels, blob.height, blob.width)
